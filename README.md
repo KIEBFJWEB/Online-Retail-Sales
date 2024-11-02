@@ -27,7 +27,7 @@ SELECT * FROM RETAIL_SALES;
 **QUESTIONS** 
 
 -- What is the total revenue generated?
--- Which product (Stock_Code) has the highest sales volume (total Quantity)?
+                                         -- Which product (Stock_Code) has the highest sales volume (total Quantity)?
 -- What is the average revenue per invoice?
 -- Which day had the highest total sales based on Invoice_Date?
 #  Customer Insights
