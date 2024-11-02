@@ -1,4 +1,4 @@
-**Objective**
+``**Objective**
 The primary objective of this project is to analyze the retail sales data to:
 
 Assess Sales Performance: Identify top-selling products, high-performing regions, and evaluate sales trends over time.
@@ -50,7 +50,7 @@ SELECT * FROM RETAIL_SALES;
 -- How many unique customers are there per country?
 # Sales Patterns Over Time
 
--- What are the monthly sales trends?
+-- What are the monthly sales trends?                                                                      
 -- Is there any noticeable seasonal trend in the sales?
 -- What is the most common day of the week for purchases?
 -- How does sales performance compare year over year?
@@ -70,3 +70,4 @@ SELECT * FROM RETAIL_SALES;
 -- How many customers have repeat purchases?
 -- What is the average time between repeat purchases for each customer?
 -- Which customers are the most frequent buyers?
+``
