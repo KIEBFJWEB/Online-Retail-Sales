@@ -7,7 +7,6 @@ Optimize Inventory and Pricing: Examine inventory movement and pricing patterns 
 Enhance Business Decision-Making: Generate actionable insights from data that can support strategic decisions in marketing, inventory planning, and customer relationship management.
 
 **DATASETS** 
-
 CREATE DATABASE ONLINE_RETAIL;
 USE ONLINE_RETAIL;
 
