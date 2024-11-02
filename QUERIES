@@ -1,0 +1,173 @@
+**QUESTIONS & SOLUTIONS** 
+
+# What is the total revenue generated?
+SELECT 
+    SUM(QUANTITY * UNIT_PRICE) TOTAL_REVENUE
+FROM
+    RETAIL_SALES; 
+
+# Which product (Stock_Code) has the highest sales volume (total Quantity)?
+ SELECT 
+    STOCK_CODE AS PRODUCT, MAX(DISTINCT QUANTITY) SALES_VOLUME
+FROM
+    RETAIL_SALES
+GROUP BY PRODUCT
+ORDER BY SALES_VOLUME DESC
+LIMIT 5; 
+ 
+ # What is the average revenue per invoice?
+ SELECT 
+    ROUND(AVG(QUANTITY * UNIT_PRICE), 2) AS AVG_REVENUE_PER_INVOICE
+FROM
+    RETAIL_SALES;
+    
+    # Which day had the highest total sales based on Invoice_Date?
+    SELECT 
+    INVOICE_DATE, SUM(QUANTITY * UNIT_PRICE) HIGHEST_SALES
+FROM
+    RETAIL_SALES
+GROUP BY INVOICE_DATE
+ORDER BY 1 DESC
+LIMIT 1;
+    
+    #Who are the top 5 customers by total purchase amount (Unit_Price * Quantity)?
+    SELECT 
+    DISTINCT CUSTOMER_ID, SUM(QUANTITY * UNIT_PRICE) AS TOTAL_PURCHASE
+FROM
+    RETAIL_SALES
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 1;
+
+# How many unique customers are there in the dataset?
+ SELECT 
+    COUNT(DISTINCT CUSTOMER_ID) AS UNIQUE_CUSTOMER
+FROM
+    RETAIL_SALES;
+ 
+ # Which customers have placed the most orders?
+ SELECT 
+    CUSTOMER_ID, COUNT(INVOICE_NO) AS TOTAL_ORDERS
+FROM
+    RETAIL_SALES
+GROUP BY 1
+LIMIT 1;
+ 
+ # What is the average order value per customer?
+ SELECT 
+    CUSTOMER_ID,
+    ROUND(AVG(QUANTITY * UNIT_PRICE), 2) ORDER_VALUE
+FROM
+    RETAIL_SALES
+GROUP BY 1
+ORDER BY 2 DESC;
+
+# Which products are the top 5 most sold items by quantity?
+SELECT 
+    STOCK_CODE, DESCRIPTION, SUM(QUANTITY) AS QUANTITY
+FROM
+    RETAIL_SALES
+GROUP BY 1 , 2
+ORDER BY 3 DESC
+LIMIT 5; 
+
+# What is the average quantity sold per product?
+SELECT STOCK_CODE, DESCRIPTION, ROUND(AVG(QUANTITY),0) AS AVG_QUANTITY  FROM RETAIL_SALES
+GROUP BY 1,2
+ORDER BY 3 DESC 
+LIMIT 5; 
+
+# Are there any products that have consistently low sales volume?
+SELECT 
+    STOCK_CODE, DESCRIPTION, SUM(QUANTITY) TOTAL_QUANTITY_SOLD
+FROM
+    RETAIL_SALES
+GROUP BY 1 , 2
+HAVING 3 < 10
+ORDER BY 3 ASC;
+
+# Which products have the highest total revenue?
+SELECT 
+    STOCK_CODE,
+    DESCRIPTION,
+    SUM(QUANTITY * UNIT_PRICE) TOTAL_REVENUE
+FROM
+    RETAIL_SALES
+GROUP BY 1 , 2
+ORDER BY 3 DESC
+LIMIT 1;
+
+# Which country generates the most revenue?
+SELECT 
+    COUNTRY, SUM(QUANTITY * UNIT_PRICE) AS TOTAL_REVENUE
+FROM
+    RETAIL_SALES
+GROUP BY 1
+ORDER BY 2 DESC;
+
+# What is the average order quantity per country?
+ SELECT 
+    COUNTRY, ROUND(AVG(QUANTITY), 0) AVG_QUANTITY
+FROM
+    RETAIL_SALES
+GROUP BY 1
+ORDER BY 2 DESC;
+
+#How many unique customers are there per country?
+SELECT 
+    COUNTRY, COUNT(DISTINCT CUSTOMER_ID) AS TOTAL_CUSTOEMR
+FROM
+    RETAIL_SALES
+GROUP BY 1
+ORDER BY 2 DESC;
+
+# What are the monthly sales trends?
+SELECT 
+    YEAR(INVOICE_DATE) AS YEAR,
+    MONTH(INVOICE_DATE) MONTH,
+    SUM(QUANTITY * UNIT_PRICE) AS SALES_TREND
+FROM
+    RETAIL_SALES
+GROUP BY 1 , 2
+ORDER BY 3 DESC;
+
+#  What is the most common day of the week for purchases?
+SELECT dayofweek(INVOICE_DATE) AS DAY, 
+COUNT(*) FROM RETAIL_SALES 
+GROUP BY 1
+ORDER BY 2 DESC;
+# How many orders contain multiple items?
+
+WITH MULTIPLE_ITEM AS 
+(SELECT 
+    INVOICE_NO, COUNT(DESCRIPTION)
+FROM
+    RETAIL_SALES
+GROUP BY 1) 
+SELECT COUNT(*) AS ORDERS FROM MULTIPLE_ITEM;
+
+# What is the average number of items per invoice?
+WITH AVG_ITEM AS 
+(SELECT INVOICE_NO, COUNT(*) AS ITEM_COUNT FROM 
+RETAIL_SALES 
+GROUP BY 1)
+SELECT 
+ ROUND(AVG(ITEM_COUNT),3) FROM AVG_ITEM
+;
+
+# Are there any patterns in high-quantity orders by specific customers?
+SELECT 
+    CUSTOMER_ID,
+    SUM(QUANTITY) AS TOTAL_QUANTITY
+FROM
+    RETAIL_SALES
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 5 ;
+
+# What is the average order size in terms of quantity?
+WITH AVG_ORDER_SIZE AS 
+( SELECT INVOICE_NO,SUM(QUANTITY) AS TOTAL_QUANTITY FROM RETAIL_SALES
+GROUP BY 1
+)
+SELECT ROUND(AVG(TOTAL_QUANTITY),2) AS AVG_ORDER_SIZE FROM AVG_ORDER_SIZE;
