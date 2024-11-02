@@ -25,22 +25,22 @@ SELECT * FROM RETAIL_SALES;
 
 **QUESTIONS** 
 
--- What is the total revenue generated?
-                                         -- Which product (Stock_Code) has the highest sales volume (total Quantity)?
--- What is the average revenue per invoice?
--- Which day had the highest total sales based on Invoice_Date?
+1 What is the total revenue generated?
+2 Which product (Stock_Code) has the highest sales volume (total Quantity)?
+3 What is the average revenue per invoice?
+4 Which day had the highest total sales based on Invoice_Date?
 #  Customer Insights
 
--- Who are the top 5 customers by total purchase amount (Unit_Price * Quantity)?
--- How many unique customers are there in the dataset?
--- Which customers have placed the most orders?
--- What is the average order value per customer?
+1 Who are the top 5 customers by total purchase amount (Unit_Price * Quantity)?
+2 How many unique customers are there in the dataset?
+3 Which customers have placed the most orders?
+4 What is the average order value per customer?
 # Product Analysis
 
--- Which products are the top 5 most sold items by quantity?
--- What is the average quantity sold per product?
--- Are there any products that have consistently low sales volume?
--- Which products have the highest total revenue?
+1 Which products are the top 5 most sold items by quantity?
+2 What is the average quantity sold per product?
+3 Are there any products that have consistently low sales volume?
+4 Which products have the highest total revenue?
 # Country-based Analysis
 
 -- Which country generates the most revenue?
