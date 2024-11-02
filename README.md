@@ -10,6 +10,7 @@ Enhance Business Decision-Making: Generate actionable insights from data that ca
 CREATE DATABASE ONLINE_RETAIL;
 USE ONLINE_RETAIL;
 
+
 CREATE TABLE RETAIL_SALES
 (
 INVOICE_NO INT,
